@@ -13,10 +13,16 @@ return new class extends Migration
 	{
 		Schema::create('loans', function (Blueprint $table) {
 			$table->id();
-			$table->number('amount');
+			$table->integer('amount');
 			$table->string('term');
 			$table->foreignId('company_id')
 				->constrained('companies')
+				->cascadeOnDelete();
+			$table->foreignId('colombian_id')
+				->constrained('colombians')
+				->cascadeOnDelete();
+			$table->foreignId('customer_id')
+				->constrained('customers')
 				->cascadeOnDelete();
 			$table->timestamps();
 		});
